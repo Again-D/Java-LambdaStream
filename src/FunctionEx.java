@@ -26,7 +26,7 @@ public class FunctionEx {
     public static void main(String[] args) {
         System.out.print("학생명 : ");
         // 학생 이름을 출력하는 함수 생성...
-        printString(t ->  t.getName());
+        printString(t -> t.getName());
         // 전공
         System.out.print("전공 : ");
         printString(t -> t.getMajor());
@@ -35,16 +35,41 @@ public class FunctionEx {
         printString(t -> t.getStudentID());
         // 나이 출력
         System.out.print("나이 : ");
-        printInt(t-> t.getAge());
+        printInt(t -> t.getAge());
+        // 나이 합계
+        System.out.print("나이 합계 : ");
+        printTot(t -> t.getAge());
+        // 나이 평균
+        System.out.print("나이 평균 : ");
+        printAvg(t -> t.getAge());
+        printAvg();
     }
 
-    // 문자열을 출력하는 함수 구현
-    // Function<Student, String> f = student -> {student.getName}
-    static void printString(Function<Student, String> f) {
+    // 나이의 평균2
+    static void printAvg() {
+        ToDoubleFunction<Student> f = t -> t.getAge();
+        double sum = 0.0;
         for (Student s : list) {
-            System.out.print(f.apply(s)+ " ");
+            sum += f.applyAsDouble(s);
         }
-        System.out.println();
+        System.out.println(sum/list.length);
+    }
+
+    // 나이의 평균1
+    static void printAvg(ToDoubleFunction<Student> f) {
+        double sum = 0;
+        for (Student s : list) {
+            sum += f.applyAsDouble(s);
+        }
+        System.out.println(sum/list.length);
+    }
+    // 나이의 합
+    static void printTot(ToIntFunction<Student> f) {
+        int sum = 0;
+        for (Student s : list) {
+            sum += f.applyAsInt(s);
+        }
+        System.out.println(sum);
     }
 
     // 정수 출력하는 함수
@@ -55,34 +80,15 @@ public class FunctionEx {
         System.out.println();
     }
 
-    // 평균을 구하는 함수 1
-    static void printAvg(ToDoubleFunction<Student> f) {
-        double sum = 0.0;
+    // 문자열을 출력하는 함수
+    // Function<Student, String> = student -> {student.getName}
+    static void printString(Function<Student, String> f) {
         for (Student s : list) {
-            sum += f.applyAsDouble(s);
+            System.out.print(f.apply(s)+" ");
         }
-        System.out.println(sum/list.length);
-
+        System.out.println();
     }
 
-    // 평균을 구하는 함수 2
-    static void printAvg() {
-        ToDoubleFunction<Student> f = t -> t.getAge();
-        double sum = 0.0;
-        for (Student s : list) {
-            sum += f.applyAsDouble(s);
-        }
-        System.out.println(sum/list.length);
-    }
-
-    // 나이의 합
-    static void printTot(ToIntFunction<Student> f) {
-        int sum = 0;
-        for (Student s : list) {
-            sum += f.applyAsInt(s);
-        }
-        System.out.println(sum);
-    }
 }
 
 

@@ -2,16 +2,16 @@ import java.util.function.DoubleBinaryOperator;
 import java.util.function.IntBinaryOperator;
 
 public class OperatorEx {
-
     /*
-        Operator는 Function과 마찬가지로 매개변수와 리턴값이 존재함.
-        Function의 하위 인터페이스로 보통 매개변수 값을 연산하고, 그 결과를 리턴하는 경우 사용함.
+        Operator는 Function과 마찮가지로 매개변수와 리턴값이 존재함.
+        Function의 하위 인터페이스로 보통 매개변수 값을 연산하고, 그 결과를 리턴하는 경우
+        사용함.
 
-          인터페이스             추상메서드
-        BinaryOperator<T>       Tapply(T t1, T t2)
-        UnaryOperator<T>        Tapply(T t)
-        xxxBinaryOperator       xxx applyAsXXX(xxx, xxx)
-        xxxUnaryOperator        xxx applyAsXXX(xxx)
+          인터페이스                 추상메서드
+        BinaryOperator<T>           T apply(T t1, T t2)
+        UnaryOperator<T>            T apply(T t)
+        xxxBinaryOperator           xxx applyAsXXX(xxx, xxx)
+        xxxUnaryOperator            xxx applyAsXXX(xxx)
      */
 
     static Student1[] list = {
@@ -30,7 +30,7 @@ public class OperatorEx {
         System.out.println(max);
 
         System.out.print("최소 수학 점수 : ");
-        System.out.println( maxOrMinMath((a,b) -> (a<=b?a:b)) );
+        System.out.println( maxOrMinMath((a,b) -> (a <= b ? a: b)) );
 
         System.out.print("최대 평균 점수 : ");
         System.out.println( maxOrMinAvg((a,b) -> (a >= b ? a : b)) );
@@ -59,7 +59,7 @@ public class OperatorEx {
 
 }
 
-// 계산을 위한 객체 생성..
+// 계산을 위한 객체 생성...
 class Student1 {
     private String name;
     private int eng;
